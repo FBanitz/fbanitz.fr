@@ -70,11 +70,11 @@ jobs:
           name: ${{ env.REPOSITORY_NAME }}-${{ steps.get_version.outputs.tag }}
           path: output_prod
 
-      - name: Deploy to OVH hosting
-        uses: pitscher/ovh-deploy-hosting-action@v1
-        env:
-          OVH_HOSTING_USER: ${{ secrets.OVH_HOSTING_USER }}
-          OVH_HOSTING_PASSWORD: ${{ secrets.OVH_HOSTING_PASSWORD }}
-          OVH_HOSTING_DOMAIN: ${{ env.OVH_HOSTING_DOMAIN }}
-          REPOSITORY_NAME: ${{ env.REPOSITORY_NAME }}
-          REPOSITORY_URL: ${{ env.REPOSITORY_URL }}
+      - name: SFTP Upload
+        uses: Dylan700/sftp-upload-action@v1.2.3
+        with:
+          server: ${{ env.OVH_SFTP_SERVER }}
+          username: ${{ secrets.OVH_SFTP_USER }}
+          password: ${{ secrets.OVH_SFTP_PASSWORD }}
+          uploads: |
+            output_prod/ => /home/${{ secrets.OVH_SFTP_USER }}/www/${{ env.REPOSITORY_NAME }}/
