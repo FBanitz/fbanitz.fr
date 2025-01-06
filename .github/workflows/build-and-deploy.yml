@@ -1,0 +1,81 @@
+name: Build and deploy
+on:
+  push:
+    # Pattern matched against refs/tags
+    tags:
+      - "*"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      COMPOSER_VERSION: 1
+
+      OVH_HOSTING_DOMAIN: ssh.clusterXXX.hosting.ovh.net
+
+      REPOSITORY_NAME: fbanitz.fr
+      REPOSITORY_URL: https://github.com/fbanitz/fbanitz.fr.git
+
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get the version
+        id: get_version
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+      - name: Update sculpin_site_prod.yml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: "app/config/sculpin_site_prod.yml"
+          changes: |
+            {
+              "version" : "${{ steps.get_version.outputs.tag }}",
+              "version_timestamp" : "${{ steps.get-datetime.outputs.atom }}"
+            }
+          commitChange: false
+
+      - name: Cache Vendor
+        id: cache-vendor
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-vendor-${{ hashFiles('**/composer.lock') }}
+
+      - name: Run composer install
+        if: steps.cache-vendor.outputs.cache-hit != 'true' # Skip if cache hit
+        uses: baschny/php-composer-action@v1
+        with:
+          composer_version: ${{ env.COMPOSER_VERSION }}
+          command: install
+          #github_oauth: ${{ secret.GITHUB_OAUTH }}
+
+      - name: Generate with Scuplpin
+        run: vendor/bin/sculpin generate --env=prod
+      - name: Check output files size
+        uses: freenet-actions/check-file-size@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: output_prod
+          max_size: 250
+          post_comment: true
+          fail_on_find: true
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.REPOSITORY_NAME }}-${{ steps.get_version.outputs.tag }}
+          path: output_prod
+
+      - name: Deploy to OVH hosting
+        uses: pitscher/ovh-deploy-hosting-action@v1
+        env:
+          OVH_HOSTING_USER: ${{ secrets.OVH_HOSTING_USER }}
+          OVH_HOSTING_PASSWORD: ${{ secrets.OVH_HOSTING_PASSWORD }}
+          OVH_HOSTING_DOMAIN: ${{ env.OVH_HOSTING_DOMAIN }}
+          REPOSITORY_NAME: ${{ env.REPOSITORY_NAME }}
+          REPOSITORY_URL: ${{ env.REPOSITORY_URL }}
