@@ -14,11 +14,10 @@ jobs:
     env:
       COMPOSER_VERSION: 1
 
-      OVH_HOSTING_DOMAIN: ssh.clusterXXX.hosting.ovh.net
+      OVH_HOSTING_DOMAIN: tsxexvs.cluster029.hosting.ovh.net
 
       REPOSITORY_NAME: fbanitz.fr
       REPOSITORY_URL: https://github.com/fbanitz/fbanitz.fr.git
-
 
     steps:
       - name: Checkout repository
