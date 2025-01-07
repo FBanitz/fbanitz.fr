@@ -69,14 +69,14 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Build assets
         run: yarn encore:prod
 
       - name: Verify built assets
         run: |
-          if [ ! -f "source/assets/build/app.js" ] || [ ! -f "source/assets/build/app.css" ]; then
+          if [ ! -f "output_prod/assets/build/app.js" ] || [ ! -f "output_prod/assets/build/app.css" ]; then
             echo "Error: Built assets are missing"
             exit 1
           fi
@@ -90,9 +90,7 @@ jobs:
           #github_oauth: ${{ secret.GITHUB_OAUTH }}
 
       - name: Generate with Scuplpin
-        run: |
-          mkdir -p source/assets/build
-          vendor/bin/sculpin generate --env=prod
+        run: vendor/bin/sculpin generate --env=prod
 
       - name: Check output files size
         uses: freenet-actions/check-file-size@v1
