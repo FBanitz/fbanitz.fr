@@ -45,6 +45,13 @@ jobs:
           path: vendor
           key: ${{ runner.os }}-vendor-${{ hashFiles('**/composer.lock') }}
 
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Run composer install
         if: steps.cache-vendor.outputs.cache-hit != 'true' # Skip if cache hit
         uses: baschny/php-composer-action@v1
@@ -55,6 +62,7 @@ jobs:
 
       - name: Generate with Scuplpin
         run: vendor/bin/sculpin generate --env=prod
+
       - name: Check output files size
         uses: freenet-actions/check-file-size@v1
         with:
@@ -69,6 +77,7 @@ jobs:
         with:
           name: ${{ env.REPOSITORY_NAME }}-${{ steps.get_version.outputs.tag }}
           path: output_prod
+
       - name: SFTP Upload
         uses: wangyucode/sftp-upload-action@v2.0.4
         with:
@@ -76,6 +85,5 @@ jobs:
           password: ${{ secrets.OVH_SFTP_PASSWORD }}
           username: ${{ secrets.OVH_SFTP_USER }}
           localDir: "output_prod/"
-          remoteDir: "/home/${{ secrets.OVH_SFTP_USER }}/www/" 
+          remoteDir: "/home/${{ secrets.OVH_SFTP_USER }}/www/"
           removeExtraFilesOnServer: true
-
