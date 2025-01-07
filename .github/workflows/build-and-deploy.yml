@@ -71,16 +71,6 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: yarn install --immutable
 
-      - name: Build assets
-        run: yarn encore:prod
-
-      - name: Verify built assets
-        run: |
-          if [ ! -f "output_prod/assets/build/app.js" ] || [ ! -f "output_prod/assets/build/app.css" ]; then
-            echo "Error: Built assets are missing"
-            exit 1
-          fi
-
       - name: Run composer install
         if: steps.cache-vendor.outputs.cache-hit != 'true' # Skip if cache hit
         uses: baschny/php-composer-action@v1
@@ -91,6 +81,21 @@ jobs:
 
       - name: Generate with Scuplpin
         run: vendor/bin/sculpin generate --env=prod
+
+      - name: Build assets
+        run: yarn encore:prod
+
+      - name: Verify built assets
+        working-directory: output_prod
+        run: |
+          if [ ! -f "/assets/build/app.js" ]; then
+            echo "Error: Built app.js asset is missing"
+            exit 1
+          fi
+          if [ ! -f "/assets/build/app.css" ]; then
+            echo "Error: Built app.css asset is missing"
+            exit 1
+          fi
 
       - name: Check output files size
         uses: freenet-actions/check-file-size@v1
