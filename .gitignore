@@ -9,3 +9,4 @@
 /source/assets/build/
 s3.conf
 /vendor/
+/.yarn/
