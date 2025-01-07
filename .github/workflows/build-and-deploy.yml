@@ -57,14 +57,15 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
 
+
+      - name: Install Yarn
+        run: corepack enable
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'yarn'
-
-      - name: Install Yarn
-        run: corepack enable
 
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
