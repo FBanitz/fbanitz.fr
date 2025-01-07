@@ -69,12 +69,13 @@ jobs:
         with:
           name: ${{ env.REPOSITORY_NAME }}-${{ steps.get_version.outputs.tag }}
           path: output_prod
-
       - name: SFTP Upload
-        uses: Dylan700/sftp-upload-action@v1.2.3
+        uses: wangyucode/sftp-upload-action@v2.0.4
         with:
-          server: ${{ env.OVH_SFTP_SERVER }}
-          username: ${{ secrets.OVH_SFTP_USER }}
+          host: ${{ env.OVH_SFTP_SERVER }}
           password: ${{ secrets.OVH_SFTP_PASSWORD }}
-          uploads: |
-            output_prod/ => /home/${{ secrets.OVH_SFTP_USER }}/www/${{ env.REPOSITORY_NAME }}/
+          username: ${{ secrets.OVH_SFTP_USER }}
+          localDir: "output_prod/"
+          remoteDir: "/home/${{ secrets.OVH_SFTP_USER }}/www/" 
+          removeExtraFilesOnServer: true
+
