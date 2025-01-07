@@ -77,3 +77,5 @@ jobs:
           username: ${{ secrets.OVH_SFTP_USER }}
           localDir: "output_prod/"
           remoteDir: "/home/${{ secrets.OVH_SFTP_USER }}/www/" 
+          removeExtraFilesOnServer: true
+
