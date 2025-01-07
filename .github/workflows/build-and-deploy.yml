@@ -78,13 +78,12 @@ jobs:
           composer_version: ${{ env.COMPOSER_VERSION }}
           command: install
           #github_oauth: ${{ secret.GITHUB_OAUTH }}
-          
+
       - name: Build assets
         run: yarn encore:prod
 
       - name: Generate with Scuplpin
         run: vendor/bin/sculpin generate --env=prod
-
 
       - name: Verify built assets
         working-directory: output_prod
@@ -103,7 +102,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           directory: output_prod
-          max_size: 250
+          # max_size: 250
           post_comment: true
           fail_on_find: true
 
