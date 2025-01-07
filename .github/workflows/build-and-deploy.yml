@@ -78,12 +78,25 @@ jobs:
           composer_version: ${{ env.COMPOSER_VERSION }}
           command: install
           #github_oauth: ${{ secret.GITHUB_OAUTH }}
+          
+      - name: Build assets
+        run: yarn encore:prod
 
       - name: Generate with Scuplpin
         run: vendor/bin/sculpin generate --env=prod
 
-      - name: Build assets
-        run: yarn encore:prod
+
+      - name: Verify built assets
+        working-directory: output_prod
+        run: |
+          if [ ! -f "assets/build/app.css" ]; then
+            echo "Error: Built app.css asset is missing"
+            exit 1
+          fi
+          if [ ! -f "assets/build/app.js" ]; then
+            echo "Error: Built app.js asset is missing"
+            exit 1
+          fi
 
       - name: Check output files size
         uses: freenet-actions/check-file-size@v1

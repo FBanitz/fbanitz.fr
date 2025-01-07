@@ -10,12 +10,12 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 // Configure Encore
 Encore
-    .setOutputPath('source/build/')
-    .setPublicPath('/build')
+    .setOutputPath('source/assets/build/')
+    .setPublicPath('/assets')
 
     // Add entry points
     .addEntry('app', './source/assets/js/app.js') // Add entry point for app.js
-    .addStyleEntry('styles', './source/assets/css/app.scss') // Add entry point for app.scss
+    // .addStyleEntry('styles', './source/assets/css/styles.scss') // Add entry point for app.scss
 
     // Enable Sass loader
     .enableSassLoader()
@@ -24,7 +24,7 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
 
     // Enable versioning for cache busting
-    .enableVersioning(Encore.isProduction())
+    // .enableVersioning(Encore.isProduction())
 
     // Cleanup output before build
     .cleanupOutputBeforeBuild()
