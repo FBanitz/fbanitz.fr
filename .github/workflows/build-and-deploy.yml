@@ -15,7 +15,7 @@ jobs:
       COMPOSER_VERSION: 1
       NODE_VERSION: 18
 
-      OVH_SFTP_SERVER: ftp.cluster029.hosting.ovh.net
+      OVH_SFTP_SERVER: ftp.cluster021.hosting.ovh.net
 
       REPOSITORY_NAME: fbanitz.fr
       REPOSITORY_URL: https://github.com/fbanitz/fbanitz.fr.git
