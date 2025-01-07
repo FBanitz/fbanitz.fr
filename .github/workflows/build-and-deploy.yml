@@ -14,7 +14,7 @@ jobs:
     env:
       COMPOSER_VERSION: 1
 
-      OVH_HOSTING_DOMAIN: tsxexvs.cluster029.hosting.ovh.net
+      OVH_SFTP_SERVER: ${{ secrets.OVH_SFTP_USER }}.cluster029.hosting.ovh.net
 
       REPOSITORY_NAME: fbanitz.fr
       REPOSITORY_URL: https://github.com/fbanitz/fbanitz.fr.git
