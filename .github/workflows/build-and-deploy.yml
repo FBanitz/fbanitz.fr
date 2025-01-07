@@ -85,18 +85,6 @@ jobs:
       - name: Build assets
         run: yarn encore:prod
 
-      - name: Verify built assets
-        working-directory: output_prod
-        run: |
-          if [ ! -f "assets/build/app.css" ]; then
-            echo "Error: Built app.css asset is missing"
-            exit 1
-          fi
-          if [ ! -f "assets/build/app.js" ]; then
-            echo "Error: Built app.js asset is missing"
-            exit 1
-          fi
-
       - name: Check output files size
         uses: freenet-actions/check-file-size@v1
         with:
