@@ -13,6 +13,7 @@ jobs:
 
     env:
       COMPOSER_VERSION: 1
+      NODE_VERSION: 18
 
       OVH_SFTP_SERVER: ftp.cluster029.hosting.ovh.net
 
@@ -26,6 +27,10 @@ jobs:
       - name: Get the version
         id: get_version
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+      - name: Get current datetime
+        id: get-datetime
+        run: echo "atom=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
 
       - name: Update sculpin_site_prod.yml
         uses: fjogeleit/yaml-update-action@main
@@ -52,6 +57,29 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
+
+      - name: Install Yarn
+        run: corepack enable
+
+      - name: Install dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
+      - name: Build assets
+        run: yarn encore:prod
+
+      - name: Verify built assets
+        run: |
+          if [ ! -f "source/assets/build/app.js" ] || [ ! -f "source/assets/build/app.css" ]; then
+            echo "Error: Built assets are missing"
+            exit 1
+          fi
+
       - name: Run composer install
         if: steps.cache-vendor.outputs.cache-hit != 'true' # Skip if cache hit
         uses: baschny/php-composer-action@v1
@@ -61,7 +89,9 @@ jobs:
           #github_oauth: ${{ secret.GITHUB_OAUTH }}
 
       - name: Generate with Scuplpin
-        run: vendor/bin/sculpin generate --env=prod
+        run: |
+          mkdir -p source/assets/build
+          vendor/bin/sculpin generate --env=prod
 
       - name: Check output files size
         uses: freenet-actions/check-file-size@v1

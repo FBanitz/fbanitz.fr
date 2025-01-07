@@ -10,5 +10,11 @@
   "devDependencies": {
     "sass": "^1.83.1",
     "sass-loader": "^8.0.0"
+  },
+  "scripts": {
+    "encore:dev-server": "encore dev-server",
+    "encore:dev": "encore dev",
+    "encore:watch": "encore dev --watch",
+    "encore:prod": "encore production --progress"
   }
 }

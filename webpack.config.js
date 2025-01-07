@@ -1,23 +1,34 @@
-var Encore = require('@symfony/webpack-encore');
+// Webpack configuration
+// This file is used to configure the webpack build process for the Symfony project.
+// It will build the assets and output them to the 'source/assets/build/' directory.
 
+const Encore = require('@symfony/webpack-encore');
+
+if (!Encore.isRuntimeEnvironmentConfigured()) {
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+}
+
+// Configure Encore
 Encore
-// directory where compiled assets will be stored
-    .setOutputPath('source/build/')
-    // public path used by the web server to access the output path
-    .setPublicPath('/build')
-    .copyFiles({
-        from: './source/assets/icons'
-    })
-    .addEntry('app', './source/assets/js/app.js')
+    .setOutputPath('source/assets/build/')
+    .setPublicPath('/assets/build')
 
-    .disableSingleRuntimeChunk()
+    // Add entry points
+    .addEntry('app', './source/assets/js/app.js') // Add entry point for app.js
+    .addStyleEntry('styles', './source/assets/css/app.scss') // Add entry point for app.scss
 
-    .cleanupOutputBeforeBuild()
+    // Enable Sass loader
+    .enableSassLoader()
+
+    // Enable source maps for debugging
     .enableSourceMaps(!Encore.isProduction())
-    // enables hashed filenames (e.g. app.abc123.css)
+
+    // Enable versioning for cache busting
     .enableVersioning(Encore.isProduction())
 
-    .enableSassLoader()
-;
+    // Cleanup output before build
+    .cleanupOutputBeforeBuild()
+    .enableSingleRuntimeChunk()
+    ;
 
 module.exports = Encore.getWebpackConfig();
