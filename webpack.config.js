@@ -10,8 +10,8 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 // Configure Encore
 Encore
-    .setOutputPath('source/assets/build/')
-    .setPublicPath('/assets/build')
+    .setOutputPath('source/build/')
+    .setPublicPath('/build')
 
     // Add entry points
     .addEntry('app', './source/assets/js/app.js') // Add entry point for app.js

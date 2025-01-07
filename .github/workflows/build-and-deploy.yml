@@ -88,12 +88,12 @@ jobs:
       - name: Verify built assets
         working-directory: output_prod
         run: |
-          if [ ! -f "/assets/build/app.js" ]; then
-            echo "Error: Built app.js asset is missing"
-            exit 1
-          fi
           if [ ! -f "/assets/build/app.css" ]; then
             echo "Error: Built app.css asset is missing"
+            exit 1
+          fi
+          if [ ! -f "/assets/build/app.js" ]; then
+            echo "Error: Built app.js asset is missing"
             exit 1
           fi
 
