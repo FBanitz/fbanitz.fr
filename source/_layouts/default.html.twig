@@ -90,9 +90,9 @@
 					<span id="version_timestamp" class="date">{{ site.version_timestamp | date() }}</span>
 				</p>
 			</footer>
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" defer type="text/javascript"></script>
-			<script src="{{ site.url }}/assets/build/app.js" defer></script>
-			<script src="{{ site.url }}/assets/js/outside_links_blank.js" defer></script>
+			<script src="https://code.jquery.com/jquery-1.7.1.min.js" integrity="sha256-iBcUE/x23aI6syuqF7EeT/+JFBxjPs5zeFJEXxumwb0=" crossorigin="anonymous"></script>
+			<script src="{{ site.url }}/assets/build/app.js"></script>
+			<script src="{{ site.url }}/assets/js/outside_links_blank.js"></script>
 			{% block scripts %}{% endblock %}
 
 			{% block scripts_after %}{% endblock %}
