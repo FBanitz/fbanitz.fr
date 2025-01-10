@@ -1,6 +1,6 @@
 sculpin_content_types:
     posts:
-        permalink: blog/:year/:month/:day/:filename/
+        permalink: blog/:slug_title
 
 sculpin_twig:
     source_view_paths:
@@ -8,8 +8,6 @@ sculpin_twig:
         - _layouts
         - _partials
         - _includes
-
+# sculpin:
+#     ignore: ["**/*.json", "**/*.md", "**/*.scss", "assets/css/", "assets/js/"]
 # To disable posts (e.g., if you aren't planning on having any posts and Sculpin's watch mode complains):
-#sculpin_content_types:
-#    posts:
-#        enabled: false

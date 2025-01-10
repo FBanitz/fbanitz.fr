@@ -1,17 +1,21 @@
 {
   "dependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
     "@popperjs/core": "^2.11.8",
-    "@symfony/webpack-encore": "^0.30",
+    "@symfony/webpack-encore": "^5.0.1",
     "bootstrap": "^5.3.3",
     "highlightjs": "^9.12.0",
-    "jquery": "^3.5",
+    "jquery": "^3.7.1",
     "popper.js": "^1.14.7",
-    "runtime": "^0.14.1"
+    "readable-stream": "^4.7.0",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4"
   },
   "packageManager": "yarn@4.3.1",
   "devDependencies": {
     "sass": "^1.83.1",
-    "sass-loader": "^8.0.0"
+    "sass-loader": "^16.0.1"
   },
   "scripts": {
     "encore:dev-server": "encore dev-server",

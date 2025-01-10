@@ -1,0 +1,19 @@
+{
+    "version": "0.2",
+    "ignorePaths": [
+        "**/*.template*"
+    ],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "ignoreWords": [
+        "github"
+    ],
+    "import": [
+        "../cspell.json"
+    ],
+    "language": "en,fr",
+    "words": [
+        "endfor",
+        "Linktree"
+    ]
+}

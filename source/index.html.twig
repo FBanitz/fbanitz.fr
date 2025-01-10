@@ -7,6 +7,10 @@ pagination:
 use:
     - posts
 ---
+{% if site.subtitle %}
+    <h2>{{ site.subtitle }}</h2>
+{% endif %}
+{% apply markdown %}{% include 'intro.md' %}{% endapply %}
 {% for post in page.pagination.items %}
     <article>
         <header>

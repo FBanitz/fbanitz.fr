@@ -1,9 +1,9 @@
-require('../css/styles.scss');
-require('runtime');
+import '../css/styles.scss';
 
-require('jquery')
-require('bootstrap')
-var hljs = require('highlightjs')
+import 'jquery';
+import 'bootstrap';
+import './outside_links_blank.js';
+import { initHighlightingOnLoad } from 'highlightjs';
 
-hljs.initHighlightingOnLoad();
+initHighlightingOnLoad();
 

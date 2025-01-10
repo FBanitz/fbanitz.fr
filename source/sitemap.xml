@@ -13,7 +13,7 @@ permalink: sitemap.xml
   {% for post in data.posts %}
   <url>
     <loc>{{ site.url }}{{ post.url }}</loc>
-    <lastmod>{{ post.date|date('c') }}</lastmod>
+    <lastmod>{{ post.datetime|date('c') }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

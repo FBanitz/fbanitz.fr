@@ -1,11 +1,27 @@
 {
     "version": "0.2",
-    "ignorePaths": [],
+    "ignorePaths": [
+        "*composer.*",
+        "*package-lock.json",
+        "*package.json"
+    ],
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
+        "clearfix",
+        "disqus",
+        "endapply",
+        "endset",
+        "highlightjs",
+        "jackson",
+        "mdash",
+        "noindex",
+        "noscript",
+        "Opdavies",
+        "stylesheet",
         "Symfony"
     ],
     "ignoreWords": [],
-    "import": []
+    "import": [],
+    "language": "en"
 }
