@@ -1,0 +1,5 @@
+- Parkour, course d'endurance (36km).
+- Implication associative.
+- Assistance informatique à domicile.
+- Passionné d’espace, plus particulièrement l'astronautique et la conquête spatiale.
+- Passionné de jeux vidéos.
