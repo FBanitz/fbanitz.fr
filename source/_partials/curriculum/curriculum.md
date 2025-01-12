@@ -7,7 +7,7 @@
     </h3>
     <div id="skills-collapse" class="accordion-collapse collapse" aria-labelledby="skills-header" data-bs-parent="#curriculum">
       <div class="accordion-body">
-        {% apply markdown %}{% include 'skills.md' %}{% endapply %}
+        {% apply markdown %}{% include 'curriculum/skills.md' %}{% endapply %}
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     </h3>
     <div id="experience-collapse" class="accordion-collapse collapse" aria-labelledby="experience-header" data-bs-parent="#curriculum">
       <div class="accordion-body">
-        {% apply markdown %}{% include 'experience.md' %}{% endapply %}
+        {% apply markdown %}{% include 'curriculum/experience.md' %}{% endapply %}
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
     </h3>
     <div id="formation-collapse" class="accordion-collapse collapse" aria-labelledby="formation-header" data-bs-parent="#curriculum">
       <div class="accordion-body">
-        {% apply markdown %}{% include 'formation.md' %}{% endapply %}
+        {% apply markdown %}{% include 'curriculum/formation.md' %}{% endapply %}
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@
     </h3>
     <div id="activities-collapse" class="accordion-collapse collapse" aria-labelledby="activities-header" data-bs-parent="#curriculum">
       <div class="accordion-body">
-        {% apply markdown %}{% include 'activities.md' %}{% endapply %}
+        {% apply markdown %}{% include 'curriculum/activities.md' %}{% endapply %}
       </div>
     </div>
   </div>
