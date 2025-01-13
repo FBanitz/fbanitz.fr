@@ -30,10 +30,6 @@ jobs:
         id: get_version
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
 
-      - name: Get current datetime
-        id: get-datetime
-        run: echo "atom=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
-
       - name: Update sculpin_site_prod.yml
         uses: fjogeleit/yaml-update-action@main
         with:
@@ -41,7 +37,6 @@ jobs:
           changes: |
             {
               "version" : "${{ steps.get_version.outputs.tag }}",
-              "version_timestamp" : "${{ steps.get-datetime.outputs.atom }}"
             }
           commitChange: false
 
