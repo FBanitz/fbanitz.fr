@@ -1,0 +1,50 @@
+<div class="accordion" id="curriculum">
+    <div class="accordion-item">
+        <h3 class="accordion-header" id="skills-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#skills-collapse" aria-expanded="false" aria-controls="skills-collapse">
+                Compétences
+            </button>
+        </h3>
+        <div id="skills-collapse" class="accordion-collapse collapse" aria-labelledby="skills-header" data-bs-parent="#curriculum">
+            <div class="accordion-body">
+                {% apply markdown %}{% include 'curriculum/skills.md' %}{% endapply %}
+            </div>
+        </div>
+    </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header" id="experience-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#experience-collapse" aria-expanded="false" aria-controls="experience-collapse">
+            Expérience
+        </button>
+    </h3>
+    <div id="experience-collapse" class="accordion-collapse collapse" aria-labelledby="experience-header" data-bs-parent="#curriculum">
+        <div class="accordion-body">
+            {% apply markdown %}{% include 'curriculum/experience.md' %}{% endapply %}
+        </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header" id="formation-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#formation-collapse" aria-expanded="false" aria-controls="formation-collapse">
+            Formation
+        </button>
+    </h3>
+    <div id="formation-collapse" class="accordion-collapse collapse" aria-labelledby="formation-header" data-bs-parent="#curriculum">
+        <div class="accordion-body">
+            {% apply markdown %}{% include 'curriculum/formation.md' %}{% endapply %}
+        </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+        <h3 class="accordion-header" id="activities-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#activities-collapse" aria-expanded="false" aria-controls="activities-collapse">
+                Activités personnelles
+            </button>
+        </h3>
+        <div id="activities-collapse" class="accordion-collapse collapse" aria-labelledby="activities-header" data-bs-parent="#curriculum">
+            <div class="accordion-body">
+                {% apply markdown %}{% include 'curriculum/activities.md' %}{% endapply %}
+            </div>
+        </div>
+  </div>
+</div>
