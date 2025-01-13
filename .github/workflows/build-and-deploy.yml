@@ -36,7 +36,8 @@ jobs:
           valueFile: "app/config/sculpin_site_prod.yml"
           changes: |
             {
-              "version" : "${{ steps.get_version.outputs.tag }}"
+              "version" : "${{ steps.get_version.outputs.tag }}",
+              "run_url" : "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }
           commitChange: false
 

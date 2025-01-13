@@ -83,10 +83,17 @@
 				</a>
 			</p>
 			<p>
-				<span id="version">v{{ site.version }}</span>
+				<a href="https://github.com/FBanitz/fbanitz.fr/releases/tag/{{ site.version }}" target="_blank"><span id="version">v{{ site.version }}</span></a>
 				updated
-				<span id="versionDateTime" class="date">{{ "now" | date() }}
-					UTC</span>
+				<span id="versionDateTime" class="date">
+				{% if site.run_url %}
+					<a href="{{ site.run_url }}" target="_blank">
+						{{ "now" | date() }}
+					</a>
+				{% else %}
+					{{ "now" | date() }}
+				{% endif %}
+				UTC</span
 			</p>
 		</footer>
 		{% block scripts %}{% endblock %}
