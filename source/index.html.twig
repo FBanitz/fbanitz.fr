@@ -12,7 +12,8 @@ use:
     <h2>{{ site.subtitle }}</h2>
 {% endif %}
 
-{% apply markdown %}{% include 'intro.md' %}{% endapply %}
+
+{{ include('intro.md') | markdown }}
 
 {% include 'curriculum/curriculum.html.twig' %}
 
