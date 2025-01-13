@@ -110,11 +110,11 @@ jobs:
           path: output_prod
 
       - name: SFTP Upload
-        uses: Dylan700/sftp-upload-action@v1.2.3
+        uses: wangyucode/sftp-upload-action@v2.0.4
         with:
-          server: ${{ env.OVH_SFTP_SERVER }}
+          host:  ${{ env.OVH_SFTP_SERVER }}
           username: ${{ secrets.OVH_SFTP_USER }}
           password: ${{ secrets.OVH_SFTP_PASSWORD }}
-          uploads: |
-            output_prod/ => /home/${{ secrets.OVH_SFTP_USER }}/www/
-          delete: true
+          localDir: "output_prod"
+          remoteDir: "/home/${{ secrets.OVH_SFTP_USER }}/www/"
+          removeExtraFilesOnServer: true
