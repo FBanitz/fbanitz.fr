@@ -17,6 +17,8 @@ use:
 
 {% include 'curriculum/curriculum.html.twig' %}
 
+{{ include('contact-me.md') | markdown }}
+
 {% for post in page.pagination.items %}
     <article>
         <header>
