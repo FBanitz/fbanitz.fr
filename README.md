@@ -1,83 +1,82 @@
-Sculpin Blog Skeleton
-=====================
+# [fbanitz.fr](https://fbanitz.fr)
 
-A skeleton for a Sculpin based blog.
+My personal website and blog built with Sculpin, Bootstrap 5, and Webpack Encore.
 
-Powered by [Sculpin](http://sculpin.io). =)
+## Prerequisites
 
+- PHP 7.4 or higher
+- Composer
+- Node.js 18 or higher
+- Yarn
 
-Features
---------
+## Local Development Setup
 
-A very basic Sculpin based blog supporting the following features:
-
- * Very minimal Bootstrap based theme.
- * A handful of existing posts in `source/_posts/` to get you started. Feel
-   free to remove these when you are ready.
- * An about page at `/about`.
- * An index page at `/`. It displays all posts and paginates them.
- * A blog archive page at `/blog`. It displays post titles broken down by
-   month and is paginated.
- * A blog categories page at `/blog/categories`.
- * A blog category index at `/blog/categories/$category`. Similar to the blog
-   archive except broken down by each category.
- * A blog tags page at `/blog/tags`.
- * A blog tag index at `/blog/tags/$tag`. Similar to the blog archive
-   except broken down by each tag.
-
-Prerequisites
--------------
-
-Sculpin is a PHP application and installed with the PHP package manager `composer`.
-See https://getcomposer.org/ for installation instructions.
-
-Unless you do a very basic website, you want some CSS and Javascript assets. Sculpin
-uses `yarn` to manage them. See https://yarnpkg.com/en/docs/install for installation
-instructions.
-
-Install
--------
-
-Create a new project using composer:
-
+1. Clone the repository
 ```bash
-$ composer create-project -s dev sculpin/blog-skeleton my-blog
+git clone https://github.com/fbanitz/fbanitz.fr.git
+cd fbanitz.fr
 ```
-
-This application uses [Symfony's Webpack Encore](https://symfony.com/doc/current/frontend.html)
-to manage CSS, JavaScript and image assets. Install the JS dependencies:
-
+https://getcomposer.org/y
 ```bash
-$ cd my-blog
-$ yarn install
+composer install
 ```
-
-Build
------
-
-First, start Encore to compile and update the assets in `source/assets/` into
-`source/build/`. The watcher keeps running until you exit it manually:
-
+https://yarnpkg.com/
 ```bash
-$ composer yarn-watch
+yarn install
 ```
+2. generate files
 
-In a new console, start the sculpin watcher to have your content updated as
-soon as you save changes:
-
+For development
 ```bash
-$ composer sculpin-watch
+yarn encore:dev
+vendor/bin/sculpin generate
 ```
+For development with watch mode
+```bash
+yarn encore:watch
+composer run sculpin-watch
+```
+For production
+```bash
+yarn encore:prod
+vendor/bin/sculpin generate --env=prod
+```
+3. Create a post
+> source/_posts/yourpost.md
+```markdown
+---
+title: Your Post Title
+tags: [tag1, tag2]
+categories: [category1]
+---
+Your content here...
+```
+The production-ready site will be available in the `output_prod/` directory.
 
-Your newly generated clone of sculpin-blog-skeleton should now be accessible
-at `http://localhost:8000/`.
+## Deployment
 
-Documentation
--------------
+The site is automatically deployed via GitHub Actions when:
+- A new tag is pushed
+- The workflow is manually triggered
 
-The skeleton provides you with useful configuration and some example data for
-a Sculpin installation.
+The deployment process:
+1. Builds assets with Webpack Encore
+2. Generates the static site with Sculpin
+3. Uploads the built site via SFTP
 
-For more information about getting started with Sculpin, check out the
-[Get Started page](https://sculpin.io/getstarted/) and have a look at the full
-[documentation](https://sculpin.io/documentation/).
+## Project Structure
+
+- `source/_posts/` - Blog posts in Markdown
+- `source/_layouts/` - Twig templates
+- `source/assets/` - CSS, JavaScript, and images
+- `app/config/` - Sculpin configuration
+- `output_dev/` - Development build output
+- `output_prod/` - Production build output
+
+## Technologies Used
+
+- [Sculpin](https://sculpin.io/) - Static site generator
+- [Bootstrap 5](https://getbootstrap.com/) - Frontend framework
+- [Webpack Encore](https://symfony.com/doc/current/frontend.html) - Asset management
+- [Twig](https://twig.symfony.com/) - Template engine
+- [Markdown](https://daringfireball.net/projects/markdown/) - Content formatting
