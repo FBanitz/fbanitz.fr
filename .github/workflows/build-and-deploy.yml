@@ -55,6 +55,12 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
 
+      - name: Cache Assets
+        id: cache-assets
+        uses: actions/cache@v3
+        with:
+          path: output_prod/assets
+          key: ${{ runner.os }}-assets-${{ hashFiles('source/assets/*') }}
 
       - name: Install Yarn
         run: corepack enable
@@ -78,6 +84,7 @@ jobs:
           #github_oauth: ${{ secret.GITHUB_OAUTH }}
 
       - name: Build assets
+        if: steps.cache-assets.outputs.cache-hit != 'true'
         run: yarn encore:prod
 
       - name: Generate with Scuplpin
