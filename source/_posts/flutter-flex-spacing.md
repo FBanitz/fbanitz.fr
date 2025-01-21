@@ -18,7 +18,8 @@ Cette nouvelle fonctionnalité réponds à un léger problème qui me tracassait
 Jusqu'à maintenant j'utilisais deux méthodes différentes pour le même résultat :
 
 ## En utilisant des `Sizedbox`
-```dartColomn(
+```dart
+Colomn(
   children: [
     Text('Mon élément 1'),
     Sizedbox(height : 5),
