@@ -11,7 +11,7 @@ datetime: "2025-01-10T21:46:19.463A"
 
 Petit ajout dans la dernière [mise à jour 3.27 de Flutter](https://medium.com/flutter/whats-new-in-flutter-3-27-28341129570c) qui ne paie pas de mine mais qui ne m'a pas laissé de marbre; la possibilité de définir un espacement régulier des enfants des `Colomn` et `Row` directement dans les paramètres des celles-ci.
 
-![Capture d'écran démontrant cette fonctionnalité]({{ site.url }}/assets/attachments/flutter-flex-spacing/attachment_1.webp)
+![]({{ site.url }}/assets/attachments/flutter-flex-spacing/attachment_1.webp)
 
 Cette nouvelle fonctionnalité réponds à un léger problème qui me tracassait depuis longtemps. Comment gérer l'espacement des enfants des deux implémentations du widget `Flex`, lorsque qu'il est le même entre chaque enfant, de manière standardisé et en limitant la redondance.
 
