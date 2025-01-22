@@ -26,9 +26,8 @@
 - GitHub Actions, GitLab CI
 
 #### Organisation / Planification
-- AGILE, SCRUM, sprints, daily
-- Issues, pull requests, merge requests, revues de code
-- Suivi de tâches, backlog, kanban, GitHub projects, GitLab issues, [ClickUp](https://clickup.com/)
+- Agile, Scrul, sprints, daily
+- Suivi de tâches, backlog, kanban, GitHub projects, GitLab issues, [ClickUp](https://clickup.com/), [gitkraken.dev](https://gitkraken.dev/)
 #### Autres compétences professionnelles
    - Transfers de compétences, formation
 #### Langue
