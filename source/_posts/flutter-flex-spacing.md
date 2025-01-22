@@ -1,15 +1,17 @@
 ---
 title: Flutter - Espacement des Row et Column 
 categories:
-  - dev
+  - development 
 tags:
   - flutter
   - ui
   - layout
-datetime: "2025-01-10T21:46:19.463A" 
+datetime: "2025-01-10T21:46:19.463A"
+slug: flutter-flex-spacing
 ---
 
-Petit ajout dans la dernière [mise à jour 3.27 de Flutter](https://medium.com/flutter/whats-new-in-flutter-3-27-28341129570c) qui ne paie pas de mine mais qui ne m'a pas laissé de marbre; la possibilité de définir un espacement régulier des enfants des `Colomn` et `Row` directement dans les paramètres des celles-ci.
+Petit ajout dans la dernière [mise à jour 3.27 de Flutter](https://medium.com/flutter/whats-new-in-flutter-3-27-28341129570c) qui ne paie pas de mine mais qui ne m'a pas laissé de marbre; La possibilité de définir un espacement régulier des enfants des `Colomn` et `Row` directement dans les paramètres des celles-ci.
+
 <div width=auto>
   <img src="{{ site.url }}/assets/attachments/flutter-flex-spacing/attachment_1.webp"/>
 </div>
@@ -55,7 +57,7 @@ Colomn(
 )
 ```
 
-Aucune des ces solutions ne me convenait pour les raisons que j'ai exposé précédemment. Mais en plus je n'était jamais réelement sur que quelle solutions utiliser quand. Ce qui créait des incohérences et rendait mon code plus difficile à maintenir. 
+Aucune des ces solutions ne me convenait pour les raisons que j'ai exposé précédemment. De plus je n'était jamais réelement sûr de quelle solutions utiliser et quand. Ce qui créait des incohérences et rendait mon code plus difficile à maintenir. 
 
 Cette nouvelle fonctionnalité, bien que mineure me semble représenter un pas en avant vers la standardisation et la simplification des procédés de développement d'applications avec Flutter et je l'accueille avec enthousiasme.
 
